@@ -19,6 +19,7 @@
 [![React 18](https://img.shields.io/badge/React-18.2+-61DAFB.svg?style=flat-square&logo=react&logoColor=black)](https://reactjs.org/)
 [![TypeScript 5](https://img.shields.io/badge/TypeScript-5.2+-3178C6.svg?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4+-06B6D4.svg?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Docker Ready](https://img.shields.io/badge/docker-ready-2496ED.svg?style=flat-square&logo=docker&logoColor=white)](docker-compose.yml)
 [![Tests Passing](https://img.shields.io/badge/tests-18%2F18%20passing-10b981.svg?style=flat-square)](backend/tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
@@ -44,10 +45,16 @@
   - [11. 📥 1-Click Leaderboard CSV Export](#11--1-click-leaderboard-csv-export)
 - [Mathematical Scoring Model](#-mathematical-scoring-model)
 - [Product Previews & Screenshots](#-product-previews--screenshots)
-- [Getting Started & Installation](#-getting-started--installation)
-- [API Reference](#-api-reference)
-- [Automated Testing Suite](#-automated-testing-suite)
-- [Responsible AI Notice](#-responsible-ai-notice)
+- [Local Development Setup](#-local-development-setup)
+- [🚀 End-to-End Production Deployment Guide](#-end-to-end-production-deployment-guide)
+  - [Method 1: Docker Compose (VPS / EC2 / DigitalOcean)](#method-1-docker-compose-vps--ec2--digitalocean)
+  - [Method 2: Render.com (1-Click Cloud Blueprint)](#method-2-rendercom-1-click-cloud-blueprint)
+  - [Method 3: Railway.app Deployment](#method-3-railwayapp-deployment)
+  - [Method 4: Vercel (Frontend) + Fly.io/Render (Backend)](#method-4-vercel-frontend--flyiorender-backend)
+  - [Method 5: Traditional Linux Server (Systemd + Nginx)](#method-5-traditional-linux-server-systemd--nginx)
+- [📡 API Reference](#-api-reference)
+- [🧪 Automated Testing Suite](#-automated-testing-suite)
+- [⚖️ Responsible AI Notice](#-responsible-ai-notice)
 
 ---
 
@@ -65,39 +72,74 @@ Traditional Applicant Tracking Systems (ATS) rely on brittle keyword string matc
 
 ## 🏛 System Architecture & End-to-End Workflow
 
+### Visual Architecture Flowchart
+
 ```mermaid
 flowchart TD
-    subgraph INGESTION["1. Document Ingestion"]
-        A[Candidate Resumes PDF / TXT] --> B[PyMuPDF Multi-Page Extraction]
-        B --> C[Heuristic & Regex Structurer]
-        C --> D[(Structured Candidate Profile)]
+    subgraph INGESTION["1. Document Ingestion Pipeline"]
+        A["Candidate Resumes (PDF / TXT)"] --> B["PyMuPDF Multi-Page Text Extractor"]
+        B --> C["Heuristic & Pattern Structurer"]
+        C --> D[("Structured Candidate Resume JSON")]
     end
 
-    subgraph JOB_STUDIO["2. Role Definition"]
-        E[Raw Job Description] --> F[LLM Job Analyzer]
-        F --> G[Mandatory Skills / Preferred Skills / Exp Threshold]
+    subgraph JOB_STUDIO["2. Role Criteria Studio"]
+        E["Raw Job Description"] --> F["LLM Role Analyzer"]
+        F --> G["Mandatory & Preferred Skill Matrix"]
     end
 
-    subgraph AI_SCREENING["3. Real-Time Semantic Matching"]
-        D & G --> H[Semantic Candidate Matcher]
-        H --> I[Evidence Citation Extractor]
-        H --> J[Gap & Critical Constraint Detector]
+    subgraph AI_SCREENING["3. Semantic Matching Core"]
+        D --> H["Semantic Alignment Engine"]
+        G --> H
+        H --> I["Evidence Citation Extractor"]
+        H --> J["Critical Constraint & Gap Checker"]
     end
 
     subgraph SCORING["4. Multi-Factor Scoring Engine"]
-        I & J --> K[7-Factor Weighted Scoring Formula]
-        K --> L[Mandatory Penalty Deductor]
-        L --> M[Leaderboard Ranking 0-100]
+        I --> K["7-Factor Scoring Formula"]
+        J --> K
+        K --> L["Mandatory Penalty Deductor"]
+        L --> M["Ranked Leaderboard (0 - 100)"]
     end
 
     subgraph RECRUITER_WORKSPACE["5. Recruiter Intelligence Hub"]
-        M --> N[Intelligent Candidate Rows]
-        N --> O[⚡ Think Deeper Deconstruction]
-        N --> P[🎯 AI Interview Kit]
-        N --> Q[✍️ Candidate Outreach Drafter]
-        N --> R[🛡️ Blind Mode Diversity Shield]
-        N --> S[🧪 Match Lab Sandbox]
+        M --> N["Intelligent Candidate Rows"]
+        N --> O["Think Deeper Deconstruction"]
+        N --> P["AI Interview Kit Studio"]
+        N --> Q["Personalized Outreach Drafter"]
+        N --> R["Blind Screening Diversity Shield"]
+        N --> S["Interactive Match Lab Sandbox"]
     end
+```
+
+### ASCII Architecture Overview
+
+```
++---------------------------------------------------------------------------------------+
+|                                    UNTHINKABLE PLATFORM                               |
++---------------------------------------------------------------------------------------+
+|                                                                                       |
+|  [ RESUME UPLOAD ] ---> ( PyMuPDF Text Extractor ) ---> [ Structured Candidate JSON ]  |
+|                                                                 |                     |
+|  [ JOB DESCRIPTION ] -> ( LLM Requirement Analyzer ) -> [ Role Criteria Schema ]      |
+|                                                                 |                     |
+|                                                                 v                     |
+|                                                    ( Semantic Match Engine )          |
+|                                                                 |                     |
+|                                       +-------------------------+------------------+  |
+|                                       |                                            |  |
+|                                       v                                            v  |
+|                         [ Cited Resume Evidence ]                    [ Critical Gaps ]|
+|                                       |                                            |  |
+|                                       +-------------------------+------------------+  |
+|                                                                 |                     |
+|                                                                 v                     |
+|                                                ( 7-Factor Scoring + Penalties )       |
+|                                                                 |                     |
+|        +--------------------------------------------------------+-------------------+ |
+|        |                        |                       |                           | |
+|        v                        v                       v                           v |
+|  [ LEADERBOARD ]       [ THINK DEEPER ]        [ INTERVIEW KIT ]          [ MATCH LAB ]
++---------------------------------------------------------------------------------------+
 ```
 
 ---
@@ -205,7 +247,7 @@ Where:
 
 ---
 
-## ⚙️ Getting Started & Installation
+## 💻 Local Development Setup
 
 ### Prerequisites
 - **Python 3.10+**
@@ -232,6 +274,150 @@ npm install
 npm run dev
 ```
 Open your browser at: [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 🚀 End-to-End Production Deployment Guide
+
+---
+
+### Method 1: Docker Compose (VPS / EC2 / DigitalOcean)
+*Recommended for single-server production deployments.*
+
+1. **SSH into your server:**
+   ```bash
+   ssh user@your-server-ip
+   ```
+
+2. **Clone the repository:**
+   ```bash
+   git clone https://github.com/MrAlhm/ResumeScreener.git
+   cd ResumeScreener
+   ```
+
+3. **Configure Environment Variables (Optional):**
+   ```bash
+   cp backend/.env.example backend/.env
+   # Edit with nano if you want to set custom GEMINI_API_KEY
+   nano backend/.env
+   ```
+
+4. **Launch with Docker Compose:**
+   ```bash
+   docker-compose up --build -d
+   ```
+
+5. **Verify deployment:**
+   - Frontend Application: `http://<your-server-ip>`
+   - Backend Swagger Docs: `http://<your-server-ip>:8000/docs`
+   - Health Check: `http://<your-server-ip>:8000/health`
+
+---
+
+### Method 2: Render.com (1-Click Cloud Blueprint)
+*Zero-configuration PaaS deployment using the included `render.yaml`.*
+
+1. Sign up / Log in to [Render.com](https://render.com).
+2. Click **New +** → **Blueprint**.
+3. Connect your GitHub repository: `https://github.com/MrAlhm/ResumeScreener`.
+4. Render will automatically parse `render.yaml` and provision:
+   - `unthinkable-backend` (FastAPI Python Web Service)
+   - `unthinkable-frontend` (React Static Site with API Rewrites)
+5. Set `GEMINI_API_KEY` (if using Google Gemini API) in the Render dashboard.
+6. Click **Apply** — your app is live on HTTPS in ~2 minutes!
+
+---
+
+### Method 3: Railway.app Deployment
+*Fast, modern cloud container hosting.*
+
+1. Log in to [Railway.app](https://railway.app).
+2. Click **New Project** → **Deploy from GitHub repo**.
+3. Select `MrAlhm/ResumeScreener`.
+4. Add two services:
+   - **Backend Service**: Root Directory `backend`, Start Command `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+   - **Frontend Service**: Root Directory `frontend`, Build Command `npm run build`, Output Directory `dist`
+5. Set Environment Variables in Railway settings:
+   - `DATABASE_URL=sqlite:///./screener.db`
+   - `LLM_PROVIDER=gemini`
+
+---
+
+### Method 4: Vercel (Frontend) + Fly.io/Render (Backend)
+*Best for global CDN frontend performance.*
+
+#### A. Deploy Backend to Fly.io:
+```bash
+cd backend
+fly launch --name unthinkable-backend
+fly deploy
+```
+
+#### B. Deploy Frontend to Vercel:
+1. Import `MrAlhm/ResumeScreener` on [Vercel](https://vercel.com).
+2. Set Root Directory to `frontend`.
+3. Add Environment Variable:
+   - `VITE_API_BASE_URL=https://your-backend.fly.dev`
+4. Click **Deploy**.
+
+---
+
+### Method 5: Traditional Linux Server (Systemd + Nginx)
+
+#### 1. Setup Backend Systemd Service:
+Create `/etc/systemd/system/unthinkable.service`:
+```ini
+[Unit]
+Description=Unthinkable Backend FastAPI Service
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/var/www/ResumeScreener/backend
+ExecStart=/var/www/ResumeScreener/backend/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+Enable and start the service:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable --now unthinkable
+```
+
+#### 2. Configure Nginx Reverse Proxy:
+Create `/etc/nginx/sites-available/unthinkable`:
+```nginx
+server {
+    listen 80;
+    server_name yourdomain.com;
+
+    # Serve built frontend
+    location / {
+        root /var/www/ResumeScreener/frontend/dist;
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Proxy API requests to FastAPI
+    location /api/ {
+        proxy_pass http://127.0.0.1:8000/api/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    location /health {
+        proxy_pass http://127.0.0.1:8000/health;
+    }
+}
+```
+Enable site & restart Nginx:
+```bash
+sudo ln -s /etc/nginx/sites-available/unthinkable /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl restart nginx
+```
 
 ---
 
