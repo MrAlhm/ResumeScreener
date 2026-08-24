@@ -5,28 +5,28 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: resume_screener_backend
+    container_name: unthinkable-backend
     ports:
       - "8000:8000"
     environment:
       - DATABASE_URL=sqlite:///./screener.db
       - LLM_PROVIDER=gemini
       - GEMINI_API_KEY=${GEMINI_API_KEY:-}
-      - GEMINI_MODEL=gemini-1.5-flash
-      - DEMO_MODE=true
-      - MAX_FILE_SIZE_MB=10
+      - BACKEND_CORS_ORIGINS=["http://localhost:5173","http://localhost:80","http://localhost","http://127.0.0.1"]
     volumes:
-      - ./backend/data:/app/data
-      - ./backend/uploads:/app/uploads
+      - backend-data:/app
     restart: unless-stopped
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: resume_screener_frontend
+    container_name: unthinkable-frontend
     ports:
-      - "5173:5173"
+      - "80:80"
     depends_on:
       - backend
     restart: unless-stopped
+
+volumes:
+  backend-data:
