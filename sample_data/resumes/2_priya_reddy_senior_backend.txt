@@ -1,0 +1,31 @@
+Priya Reddy
+San Jose, CA | priya.reddy@example.com | +1 (408) 555-0143 | linkedin.com/in/priyareddy-dev | github.com/priyareddy
+
+PROFESSIONAL SUMMARY
+Senior Software & ML Systems Engineer with 4 years of experience building high-concurrency Python/FastAPI backends, optimizing relational database architectures, and deploying PyTorch & Scikit-learn inference microservices on Docker and AWS.
+
+PROFESSIONAL EXPERIENCE
+CloudScale Inc. — Senior Backend Engineer (2022 - Present)
+• Designed, built, and maintained 15+ FastAPI microservices handling 25M daily requests with 99.99% uptime.
+• Collaborated with data science teams to wrap PyTorch recommendation models into low-latency REST endpoints.
+• Optimized complex PostgreSQL query execution plans, improving p99 database response times by 35%.
+• Architected cloud infrastructure using Docker, AWS (EC2, S3, RDS), and Terraform.
+
+FinTech Systems — Software Engineer (2020 - 2022)
+• Developed financial transaction data pipelines in Python and SQL.
+• Built fraud detection scoring jobs utilizing Scikit-learn, XGBoost, and Pandas.
+• Automated container builds and continuous deployments using Docker and GitHub Actions.
+
+EDUCATION
+UC Berkeley — Bachelor of Science in Computer Engineering, 2016 - 2020 (GPA: 3.8/4.0)
+
+TECHNICAL SKILLS
+• Programming Languages: Python, SQL, JavaScript, Bash
+• Frameworks: FastAPI, Django, Flask, Scikit-learn, PyTorch
+• Databases: PostgreSQL, MySQL, Redis
+• Tools & Cloud: Docker, AWS (EC2, S3, RDS), Git, Linux, Postman, CI/CD
+• Soft Skills: Cross-functional Collaboration, System Architecture, Agile, Problem Solving
+
+KEY PROJECTS
+• Model Serving Gateway: High-throughput model serving gateway with Redis caching, reducing p99 inference latency to 28ms.
+• Distributed Transaction Ledger: Resilient ledger service with idempotency keys in PostgreSQL.

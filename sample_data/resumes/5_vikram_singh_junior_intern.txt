@@ -1,0 +1,24 @@
+Vikram Singh
+Boston, MA | vikram.singh@example.com | +1 (617) 555-0129 | linkedin.com/in/vikramsingh-dev | github.com/vikramsingh
+
+PROFESSIONAL SUMMARY
+Recent graduate seeking entry-level software opportunities. Familiar with introductory Python scripting, HTML/CSS, Git, and fundamental database concepts.
+
+PROFESSIONAL EXPERIENCE
+TechStart Solutions — Software Intern (May 2023 - Aug 2023, 4 months)
+• Assisted senior developers in debugging web pages and writing unit test cases.
+• Formatted and cleaned CSV datasets for internal reports using Excel and basic Python scripts.
+• Participated in daily standups and code reviews.
+
+EDUCATION
+Boston University — Bachelor of Science in Information Systems, 2019 - 2023 (GPA: 3.2/4.0)
+
+TECHNICAL SKILLS
+• Programming Languages: Python (Introductory), HTML, CSS, JavaScript, SQL (Basic)
+• Databases: SQLite
+• Tools: Git, VS Code, GitHub
+• Soft Skills: Eager to learn, Communication, Diligent
+
+COURSEWORK PROJECTS
+• Student Library Manager: Simple command-line book checkout tool written in Python with SQLite database.
+• Personal Portfolio Website: Responsive personal website built with HTML5, CSS3, and JavaScript.

@@ -1,0 +1,18 @@
+Data Engineer
+Company: StreamMetrics Data Platform
+Location: New York, NY (Hybrid)
+Experience Required: 2+ years
+
+About the Role:
+We are looking for a Data Engineer to design, build, and maintain real-time streaming pipelines, data lakehouse architectures, and analytics data models.
+
+Required Skills:
+- Python, SQL, Apache Spark, Kafka, PostgreSQL, Data Warehousing, Git.
+
+Preferred Skills:
+- Docker, Kubernetes, AWS, Airflow, dbt, Snowflake.
+
+Key Responsibilities:
+- Build fault-tolerant batch and streaming data pipelines.
+- Model data schemas in PostgreSQL and Snowflake.
+- Maintain CI/CD pipelines and infrastructure as code.

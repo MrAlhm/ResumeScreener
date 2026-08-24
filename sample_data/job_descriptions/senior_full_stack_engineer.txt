@@ -1,0 +1,12 @@
+Senior Full Stack Engineer
+Company: CloudScale Systems
+Experience: 3+ years
+
+Responsibilities:
+- Build robust web applications using React, TypeScript, and modern backend services.
+- Architect RESTful APIs and microservices using FastAPI/Python or Node.js.
+- Optimize database queries in PostgreSQL and manage cloud infrastructure on AWS/Docker.
+
+Required Skills:
+- React, TypeScript, Python or Node.js, PostgreSQL, REST APIs, Git.
+Preferred: Docker, AWS, Tailwind CSS, Redis.

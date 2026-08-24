@@ -1,0 +1,27 @@
+Machine Learning Engineer
+Company: NexusAI Technologies
+Location: San Francisco, CA (Hybrid)
+Experience Required: 2+ years of professional ML experience
+
+About the Role:
+NexusAI is seeking a skilled and proactive Machine Learning Engineer to design, build, and deploy production machine learning models and intelligent data pipelines.
+
+Key Responsibilities:
+- Design, develop, train, and fine-tune scalable machine learning and deep learning models.
+- Build high-performance REST APIs (using FastAPI/Python) to serve model inference in production.
+- Work closely with data engineering teams to optimize feature stores, SQL pipelines, and embeddings.
+- Maintain high code quality with automated unit testing, documentation, and continuous integration.
+
+Required Qualifications (Mandatory):
+- 2+ years of production experience in Machine Learning or Data Science.
+- Strong proficiency in Python and SQL.
+- Deep expertise in Deep Learning frameworks (PyTorch or TensorFlow) and Scikit-learn.
+- Strong understanding of data structures, algorithms, and modular software engineering.
+- Bachelor's or Master's degree in Computer Science, AI, Mathematics, or related field.
+
+Preferred Qualifications (Nice-to-Have):
+- Hands-on experience with Docker, Kubernetes, and containerized deployment.
+- Experience with Cloud platforms (AWS or GCP).
+- Familiarity with MLOps tooling (MLflow, Weights & Biases, or Airflow).
+- Experience with Large Language Models (LLMs), RAG architectures, or Hugging Face.
+- Excellent cross-functional communication and collaborative problem-solving skills.

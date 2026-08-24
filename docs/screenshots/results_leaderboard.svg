@@ -1,0 +1,97 @@
+<svg width="1200" height="680" viewBox="0 0 1200 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="680" rx="16" fill="#020617"/>
+  <!-- Top Navigation Bar -->
+  <rect x="0" y="0" width="1200" height="64" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <circle cx="40" cy="32" r="18" fill="#042f2e" stroke="#2dd4bf" stroke-width="2"/>
+  <path d="M34 26L46 32L34 38V26Z" fill="#2dd4bf"/>
+  <text x="70" y="37" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="bold">Smart Resume Screener</text>
+  <text x="1018" y="37" fill="#6ee7b7" font-family="sans-serif" font-size="11" font-weight="bold">REAL-TIME ENGINE</text>
+
+  <!-- Sidebar -->
+  <rect x="24" y="88" width="220" height="568" rx="16" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <text x="56" y="129" fill="#94a3b8" font-family="sans-serif" font-size="13" font-weight="500">📊 Dashboard</text>
+  <text x="56" y="177" fill="#94a3b8" font-family="sans-serif" font-size="13" font-weight="500">☁️ Upload Resumes</text>
+  <text x="56" y="225" fill="#94a3b8" font-family="sans-serif" font-size="13" font-weight="500">💼 Job Description</text>
+  <rect x="36" y="250" width="196" height="40" rx="10" fill="#0d9488"/>
+  <text x="56" y="275" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">🏆 Screening Results</text>
+  <text x="56" y="323" fill="#94a3b8" font-family="sans-serif" font-size="13" font-weight="500">👤 Candidate Details</text>
+  <text x="56" y="371" fill="#94a3b8" font-family="sans-serif" font-size="13" font-weight="500">⚖️ Compare Candidates</text>
+
+  <!-- Header Card -->
+  <rect x="268" y="88" width="908" height="70" rx="16" fill="#ffffff"/>
+  <text x="292" y="122" fill="#0f172a" font-family="sans-serif" font-size="18" font-weight="bold">Screening Leaderboard: Machine Learning Engineer</text>
+  <text x="292" y="142" fill="#64748b" font-family="sans-serif" font-size="12">5 Candidates Screened • Evaluated against NexusAI Requirements</text>
+
+  <!-- Leaderboard Table -->
+  <rect x="268" y="174" width="908" height="482" rx="16" fill="#ffffff"/>
+  <!-- Table Header -->
+  <rect x="268" y="174" width="908" height="44" rx="16" fill="#f8fafc"/>
+  <text x="310" y="202" fill="#475569" font-family="sans-serif" font-size="11" font-weight="bold">RANK</text>
+  <text x="380" y="202" fill="#475569" font-family="sans-serif" font-size="11" font-weight="bold">CANDIDATE</text>
+  <text x="560" y="202" fill="#475569" font-family="sans-serif" font-size="11" font-weight="bold">SCORE</text>
+  <text x="690" y="202" fill="#475569" font-family="sans-serif" font-size="11" font-weight="bold">MATCHED SKILLS</text>
+  <text x="890" y="202" fill="#475569" font-family="sans-serif" font-size="11" font-weight="bold">DECISION</text>
+  <text x="1050" y="202" fill="#475569" font-family="sans-serif" font-size="11" font-weight="bold">ACTION</text>
+
+  <!-- Row 1: Aarav Sharma -->
+  <line x1="268" y1="218" x2="1176" y2="218" stroke="#f1f5f9"/>
+  <rect x="306" y="234" width="28" height="22" rx="6" fill="#fef3c7" stroke="#fde68a"/>
+  <text x="314" y="249" fill="#b45309" font-family="monospace" font-size="11" font-weight="bold">#1</text>
+  <text x="380" y="242" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">Aarav Sharma</text>
+  <text x="380" y="258" fill="#64748b" font-family="sans-serif" font-size="11">5.0 yrs exp • Stanford MS</text>
+  <text x="560" y="250" fill="#059669" font-family="monospace" font-size="14" font-weight="bold">91.5% EXCELLENT</text>
+  <text x="690" y="250" fill="#047857" font-family="sans-serif" font-size="11">✓ Python, SQL, PyTorch, AWS</text>
+  <rect x="890" y="235" width="100" height="24" rx="6" fill="#ecfdf5" stroke="#a7f3d0"/>
+  <text x="906" y="251" fill="#065f46" font-family="sans-serif" font-size="11" font-weight="bold">Shortlisted</text>
+  <rect x="1050" y="235" width="70" height="24" rx="6" fill="#0f172a"/>
+  <text x="1066" y="251" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="bold">Inspect</text>
+
+  <!-- Row 2: Priya Reddy -->
+  <line x1="268" y1="274" x2="1176" y2="274" stroke="#f1f5f9"/>
+  <rect x="306" y="290" width="28" height="22" rx="6" fill="#f1f5f9"/>
+  <text x="314" y="305" fill="#475569" font-family="monospace" font-size="11" font-weight="bold">#2</text>
+  <text x="380" y="298" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">Priya Reddy</text>
+  <text x="380" y="314" fill="#64748b" font-family="sans-serif" font-size="11">4.0 yrs exp • UC Berkeley</text>
+  <text x="560" y="306" fill="#0d9488" font-family="monospace" font-size="14" font-weight="bold">84.0% STRONG</text>
+  <text x="690" y="306" fill="#047857" font-family="sans-serif" font-size="11">✓ Python, FastAPI, Docker, SQL</text>
+  <rect x="890" y="291" width="100" height="24" rx="6" fill="#ecfdf5" stroke="#a7f3d0"/>
+  <text x="906" y="307" fill="#065f46" font-family="sans-serif" font-size="11" font-weight="bold">Shortlisted</text>
+  <rect x="1050" y="291" width="70" height="24" rx="6" fill="#0f172a"/>
+  <text x="1066" y="307" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="bold">Inspect</text>
+
+  <!-- Row 3: Rahul Verma -->
+  <line x1="268" y1="330" x2="1176" y2="330" stroke="#f1f5f9"/>
+  <text x="314" y="361" fill="#475569" font-family="monospace" font-size="11" font-weight="bold">#3</text>
+  <text x="380" y="354" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">Rahul Verma</text>
+  <text x="380" y="370" fill="#64748b" font-family="sans-serif" font-size="11">2.5 yrs exp • UW Statistics</text>
+  <text x="560" y="362" fill="#2563eb" font-family="monospace" font-size="14" font-weight="bold">72.0% MODERATE</text>
+  <text x="690" y="362" fill="#047857" font-family="sans-serif" font-size="11">✓ Python, Scikit-learn, SQL</text>
+  <rect x="890" y="347" width="100" height="24" rx="6" fill="#fffbeb" stroke="#fde68a"/>
+  <text x="912" y="363" fill="#92400e" font-family="sans-serif" font-size="11" font-weight="bold">In Review</text>
+  <rect x="1050" y="347" width="70" height="24" rx="6" fill="#0f172a"/>
+  <text x="1066" y="363" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="bold">Inspect</text>
+
+  <!-- Row 4: Ananya Rao -->
+  <line x1="268" y1="386" x2="1176" y2="386" stroke="#f1f5f9"/>
+  <text x="314" y="417" fill="#475569" font-family="monospace" font-size="11" font-weight="bold">#4</text>
+  <text x="380" y="410" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">Ananya Rao</text>
+  <text x="380" y="426" fill="#64748b" font-family="sans-serif" font-size="11">3.0 yrs exp • UT Austin</text>
+  <text x="560" y="418" fill="#d97706" font-family="monospace" font-size="14" font-weight="bold">58.0% WEAK</text>
+  <text x="690" y="418" fill="#be123c" font-family="sans-serif" font-size="11">✗ Missing ML/DL Frameworks</text>
+  <rect x="890" y="403" width="100" height="24" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="910" y="419" fill="#475569" font-family="sans-serif" font-size="11">Undecided</text>
+  <rect x="1050" y="403" width="70" height="24" rx="6" fill="#0f172a"/>
+  <text x="1066" y="419" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="bold">Inspect</text>
+
+  <!-- Row 5: Vikram Singh -->
+  <line x1="268" y1="442" x2="1176" y2="442" stroke="#f1f5f9"/>
+  <text x="314" y="473" fill="#475569" font-family="monospace" font-size="11" font-weight="bold">#5</text>
+  <text x="380" y="466" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">Vikram Singh</text>
+  <text x="380" y="482" fill="#64748b" font-family="sans-serif" font-size="11">0.5 yrs exp • Intern</text>
+  <text x="560" y="474" fill="#e11d48" font-family="monospace" font-size="14" font-weight="bold">41.0% POOR</text>
+  <text x="690" y="474" fill="#be123c" font-family="sans-serif" font-size="11">✗ Critical Experience Gap</text>
+  <rect x="890" y="459" width="100" height="24" rx="6" fill="#fff1f2" stroke="#fecdd3"/>
+  <text x="914" y="475" fill="#9f1239" font-family="sans-serif" font-size="11" font-weight="bold">Rejected</text>
+  <rect x="1050" y="459" width="70" height="24" rx="6" fill="#0f172a"/>
+  <text x="1066" y="475" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="bold">Inspect</text>
+</svg>

@@ -1,0 +1,26 @@
+Ananya Rao
+Austin, TX | ananya.rao@example.com | +1 (512) 555-0177 | linkedin.com/in/ananyarao-web | github.com/ananyarao
+
+PROFESSIONAL SUMMARY
+Full Stack Engineer with 3 years of web application development experience in React, TypeScript, Node.js, Express, and PostgreSQL. Experienced with containerization and building responsive user interfaces.
+
+PROFESSIONAL EXPERIENCE
+WebCraft Digital — Full Stack Developer (2021 - Present)
+• Built responsive SaaS dashboards using React, Next.js, TypeScript, and Tailwind CSS.
+• Developed backend API routes using Node.js, Express, and PostgreSQL.
+• Wrote basic Python utility scripts for data migration and automation.
+• Collaborated in an agile scrum team with bi-weekly sprint cycles.
+
+EDUCATION
+UT Austin — Bachelor of Science in Information Technology, 2017 - 2021 (GPA: 3.5/4.0)
+
+TECHNICAL SKILLS
+• Programming Languages: JavaScript, TypeScript, HTML/CSS, Python (Basic), SQL
+• Frameworks: React, Next.js, Node.js, Express, Tailwind CSS
+• Databases: PostgreSQL, MongoDB
+• Tools: Git, Docker, Postman, Webpack, Vite
+• Soft Skills: Teamwork, UI Design, Problem Solving, Agile
+
+KEY PROJECTS
+• Analytics Web Portal: Interactive data visualization dashboard for marketing teams with React and Tailwind CSS.
+• E-commerce Storefront: Full stack web app with stripe checkout and cart management.

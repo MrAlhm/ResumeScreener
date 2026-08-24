@@ -1,0 +1,31 @@
+Rahul Verma
+Seattle, WA | rahul.verma@example.com | +1 (206) 555-0199 | linkedin.com/in/rahulverma-ds | github.com/rahulverma
+
+PROFESSIONAL SUMMARY
+Data Scientist with 2.5 years of experience in predictive modeling, feature engineering, exploratory data analysis, and tabular machine learning using Python, SQL, Scikit-learn, and XGBoost.
+
+PROFESSIONAL EXPERIENCE
+RetailMetrics — Data Scientist (2022 - Present)
+• Built customer churn and lifetime value predictive models using Python, Scikit-learn, and XGBoost with 0.84 ROC-AUC.
+• Formulated complex SQL queries across BigQuery datasets to generate analytic feature tables.
+• Designed and analyzed statistical A/B tests for marketing campaigns, increasing conversion by 12%.
+• Communicated statistical model insights and visualizations to senior non-technical business stakeholders.
+
+InsightCorp — Junior Data Analyst (2021 - 2022)
+• Created automated Tableau dashboards and cleaned messy customer datasets using Pandas and NumPy.
+• Maintained automated SQL reports and weekly data validation scripts.
+
+EDUCATION
+University of Washington — Bachelor of Science in Statistics & Applied Mathematics, 2017 - 2021 (GPA: 3.6/4.0)
+
+TECHNICAL SKILLS
+• Programming Languages: Python, SQL, R
+• Frameworks: Scikit-learn, Pandas, NumPy, XGBoost, Matplotlib, Seaborn
+• Databases: PostgreSQL, Google BigQuery
+• AI/ML: Machine Learning, Statistical Analysis, Feature Selection, A/B Testing, Predictive Modeling
+• Tools: Git, Jupyter Notebooks, Tableau
+• Soft Skills: Analytical Thinking, Data Storytelling, Collaboration, Communication
+
+KEY PROJECTS
+• Churn Prediction Pipeline: End-to-end churn prediction notebook and monthly batch scoring job achieving 0.84 ROC-AUC.
+• E-Commerce Price Elasticity Model: Formulated regression models to estimate product price sensitivity.
