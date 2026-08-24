@@ -86,3 +86,22 @@ def test_screening_run():
     last_score = data["results"][-1]["overall_score"]
     assert first_score >= last_score
     assert first_score >= 85.0
+
+def test_ats_compatibility_endpoint():
+    resp = client.post(
+        "/api/screening/ats-check",
+        json={
+            "resume_text": "Experienced Python Backend Engineer with 4 years building FastAPI and PostgreSQL APIs.",
+            "job_text": "Looking for Python Engineer with 3+ years experience in FastAPI and PostgreSQL.",
+            "target_role": "Backend Engineer"
+        }
+    )
+    assert resp.status_code == 200
+    res_json = resp.json()
+    assert res_json["success"] is True
+    data = res_json["data"]
+    assert "ats_score" in data
+    assert data["ats_score"] > 60.0
+    assert "grade" in data
+    assert "sections_audit" in data
+    assert "actionable_tips" in data

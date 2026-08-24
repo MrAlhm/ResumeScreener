@@ -12,7 +12,7 @@
 
 ### *Think beyond the obvious.*
 
-**An intelligent, dark-first, precision AI recruitment platform powered by Google DeepMind's Gemma 4 reasoning engine with sub-15ms latency, ACID-compliant database consistency, and zero external API dependencies.**
+**An intelligent, dark-first, precision AI recruitment platform powered by Google DeepMind's Gemma 4 reasoning engine with sub-15ms latency, ACID-compliant database consistency, ATS Compatibility Checker, and zero external API dependencies.**
 
 **Created & Engineered by:**  
 🎓 **Kurapati SriHarsha Vardhan**  
@@ -21,6 +21,7 @@
 ---
 
 [![Gemma 4 Powered](https://img.shields.io/badge/Gemma%204-E2B%20%7C%2012B%20Unified%20%7C%2026B%20MoE-00f2c3.svg?style=flat-square&logo=google&logoColor=black)](https://arxiv.org/abs/2607.02770)
+[![ATS Compatibility Auditor](https://img.shields.io/badge/ATS%20Checker-Parseability%20%7C%20Keyword%20Density-38bdf8.svg?style=flat-square&logo=target&logoColor=white)](frontend/src/pages/ATSCheckerPage.tsx)
 [![Database: ACID & WAL](https://img.shields.io/badge/database-ACID%20%7C%20WAL%20Mode-blue.svg?style=flat-square&logo=sqlite&logoColor=white)](backend/app/database/connection.py)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
@@ -28,7 +29,7 @@
 [![TypeScript 5](https://img.shields.io/badge/TypeScript-5.2+-3178C6.svg?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4+-06B6D4.svg?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Docker Ready](https://img.shields.io/badge/docker-ready-2496ED.svg?style=flat-square&logo=docker&logoColor=white)](docker-compose.yml)
-[![Tests Passing](https://img.shields.io/badge/tests-24%2F24%20passing-10b981.svg?style=flat-square)](backend/tests/)
+[![Tests Passing](https://img.shields.io/badge/tests-25%2F25%20passing-10b981.svg?style=flat-square)](backend/tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 </div>
@@ -46,14 +47,15 @@
   - [1. ⚡ Bulk Resume Ingestion & PyMuPDF Multi-Page Extraction](#1--bulk-resume-ingestion--pymupdf-multi-page-extraction)
   - [2. ⚡ AI Semantic Match Engine & Cited Evidence Verification](#2--ai-semantic-match-engine--cited-evidence-verification)
   - [3. ⚡ Transparent 7-Factor Deterministic Scoring Engine](#3--transparent-7-factor-deterministic-scoring-engine)
-  - [4. ⚡ "Think Deeper" Signature Candidate Deconstruction](#4--think-deeper-signature-candidate-deconstruction)
-  - [5. 🧪 Interactive Match Lab (Real-Time Sandbox)](#5--interactive-match-lab-real-time-sandbox)
-  - [6. 🎯 AI Interview Kit & Question Studio](#6--ai-interview-kit--question-studio)
-  - [7. ✍️ AI Candidate Outreach Generator](#7--ai-candidate-outreach-generator)
-  - [8. 🛡️ Bias-Free Blind Screening Shield Mode](#8--bias-free-blind-screening-shield-mode)
-  - [9. ⌨️ Global Command Palette (`⌘K` / `Ctrl+K`)](#9--global-command-palette-k--ctrlk)
-  - [10. 📊 Side-by-Side Dimension Matrix & Competency Radar](#10--side-by-side-dimension-matrix--competency-radar)
-  - [11. 📥 1-Click Leaderboard CSV Export](#11--1-click-leaderboard-csv-export)
+  - [4. 🎯 Dedicated ATS Resume Compatibility & Parseability Auditor](#4--dedicated-ats-resume-compatibility--parseability-auditor)
+  - [5. ⚡ "Think Deeper" Signature Candidate Deconstruction](#5--think-deeper-signature-candidate-deconstruction)
+  - [6. 🧪 Interactive Match Lab (Real-Time Sandbox)](#6--interactive-match-lab-real-time-sandbox)
+  - [7. 🎯 AI Interview Kit & Question Studio](#7--ai-interview-kit--question-studio)
+  - [8. ✍️ AI Candidate Outreach Generator](#8--ai-candidate-outreach-generator)
+  - [9. 🛡️ Bias-Free Blind Screening Shield Mode](#9--bias-free-blind-screening-shield-mode)
+  - [10. ⌨️ Global Command Palette (`⌘K` / `Ctrl+K`)](#10--global-command-palette-k--ctrlk)
+  - [11. 📊 Side-by-Side Dimension Matrix & Competency Radar](#11--side-by-side-dimension-matrix--competency-radar)
+  - [12. 📥 1-Click Leaderboard CSV Export](#12--1-click-leaderboard-csv-export)
 - [Mathematical Scoring Model](#-mathematical-scoring-model)
 - [Product Previews & Screenshots](#-product-previews--screenshots)
 - [Local Development Setup](#-local-development-setup)
@@ -177,38 +179,8 @@ flowchart TD
         N --> Q["Personalized Outreach Drafter"]
         N --> R["Blind Screening Diversity Shield"]
         N --> S["Interactive Match Lab Sandbox"]
+        N --> T["ATS Resume Compatibility Checker"]
     end
-```
-
-### ASCII Architecture Overview
-
-```
-+---------------------------------------------------------------------------------------+
-|                                    UNTHINKABLE PLATFORM                               |
-+---------------------------------------------------------------------------------------+
-|                                                                                       |
-|  [ RESUME UPLOAD ] ---> ( PyMuPDF Text Extractor ) ---> [ Structured Candidate JSON ]  |
-|                                                                 |                     |
-|  [ JOB DESCRIPTION ] -> ( Gemma 4 Analyzer ) ----------> [ Role Criteria Schema ]      |
-|                                                                 |                     |
-|                                                                 v                     |
-|                                                ( Gemma 4 Semantic Engine )            |
-|                                                                 |                     |
-|                                       +-------------------------+------------------+  |
-|                                       |                                            |  |
-|                                       v                                            v  |
-|                         [ Cited Resume Evidence ]                    [ Critical Gaps ]|
-|                                       |                                            |  |
-|                                       +-------------------------+------------------+  |
-|                                                                 |                     |
-|                                                                 v                     |
-|                                                ( 7-Factor Scoring + Penalties )       |
-|                                                                 |                     |
-|        +--------------------------------------------------------+-------------------+ |
-|        |                        |                       |                           | |
-|        v                        v                       v                           v |
-|  [ LEADERBOARD ]       [ THINK DEEPER ]        [ INTERVIEW KIT ]          [ MATCH LAB ]
-+---------------------------------------------------------------------------------------+
 ```
 
 ---
@@ -221,7 +193,7 @@ flowchart TD
 - Extracts candidate name, email, Indian phone formats, locations, total experience, categorized skills, education history, and project summaries into structured JSON schemas.
 
 ### 2. ⚡ AI Semantic Match Engine & Cited Evidence Verification
-- Evaluates candidate qualifications against job requirements using semantic synonym mapping (e.g. *PostgreSQL ↔ Relational DBs*, *PyTorch ↔ Deep Learning*).
+- Evaluates candidate qualifications against job requirements using semantic synonym mapping.
 - Extracts verifiable cited quotes from the resume for every matched requirement.
 - Visually categorizes findings into `✓ MATCHED`, `◐ PARTIAL`, and `× MISSING`.
 
@@ -234,30 +206,36 @@ flowchart TD
   5. **Education & Degree Alignment** (5%)
   6. **Preferred Qualifications** (10%)
   7. **Soft Skills & Communication** (5%)
-- Automatic penalty deduction applied when mandatory constraints (e.g. minimum experience threshold or core required frameworks) are not met.
+- Automatic penalty deduction applied when mandatory constraints are not met.
 
-### 4. ⚡ "Think Deeper" Signature Candidate Deconstruction
+### 4. 🎯 Dedicated ATS Resume Compatibility & Parseability Auditor
+- Upload any candidate resume/CV (.pdf/.txt) or paste text directly against a custom job description.
+- Computes **ATS Parseability Grade** (A+, A, B, C, D) and composite compatibility score (0-100).
+- Performs a 5-point section structure audit: *Contact Information*, *Work History*, *Education*, *Technical Skills*, and *Projects*.
+- Detects matched keywords, missing critical keywords, and provides actionable recommendations to optimize resume bullet points to pass strict ATS filters.
+
+### 5. ⚡ "Think Deeper" Signature Candidate Deconstruction
 - Uncovers hidden strengths, adjacent engineering skills, domain transfers, and tailored interview focus questions.
 
-### 5. 🧪 Interactive Match Lab (Real-Time Sandbox)
+### 6. 🧪 Interactive Match Lab (Real-Time Sandbox)
 - Sub-15ms live scoring sandbox for instant resume vs. JD simulations.
 
-### 6. 🎯 AI Interview Kit & Question Studio
+### 7. 🎯 AI Interview Kit & Question Studio
 - 1-click generation of 4 specialized technical question categories with rubrics and look-for indicators.
 
-### 7. ✍️ AI Candidate Outreach Generator
+### 8. ✍️ AI Candidate Outreach Generator
 - 1-click personalized email generator citing specific candidate projects.
 
-### 8. 🛡️ Bias-Free Blind Screening Shield Mode
+### 9. 🛡️ Bias-Free Blind Screening Shield Mode
 - Anonymizes candidate names and masks contact information for fair review.
 
-### 9. ⌨️ Global Command Palette (`⌘K` / `Ctrl+K`)
+### 10. ⌨️ Global Command Palette (`⌘K` / `Ctrl+K`)
 - Quick navigation and action execution.
 
-### 10. 📊 Side-by-Side Dimension Matrix & Competency Radar
+### 11. 📊 Side-by-Side Dimension Matrix & Competency Radar
 - Comparative radar charts for up to 4 candidates simultaneously.
 
-### 11. 📥 1-Click Leaderboard CSV Export
+### 12. 📥 1-Click Leaderboard CSV Export
 - Download comprehensive screening reports in CSV format.
 
 ---
@@ -388,6 +366,7 @@ docker-compose up --build -d
 | `POST` | `/api/candidates/{id}/outreach` | Draft personalized recruiter outreach email |
 | `POST` | `/api/screening/run` | Execute AI candidate screening run |
 | `POST` | `/api/screening/live-simulate` | Instant real-time Match Lab simulation |
+| `POST` | `/api/screening/ats-check` | Comprehensive ATS compatibility & parseability audit |
 | `GET` | `/api/screening/sessions/{id}/export-csv`| Download screening leaderboard as CSV |
 | `POST` | `/api/data/clear` | Reset workspace database |
 | `POST` | `/api/data/load-samples` | Load sample dataset |
@@ -403,13 +382,13 @@ cd backend
 python -m pytest tests/ -v
 ```
 
-### Test Coverage (24/24 Passing):
+### Test Coverage (25/25 Passing):
 - `test_database_consistency.py`: SQLite WAL journal mode, foreign key cascades, transaction rollback.
 - `test_gemma4_service.py`: Gemma 4 initialization, thinking mode parsing, low-latency reasoning.
 - `test_pdf_extraction.py`: PDF extraction, TXT parsing, corrupted document handling.
 - `test_resume_parser.py`: Skill extraction, Indian phone formats, education degrees.
 - `test_scoring_engine.py`: Category weight normalization, deterministic scoring, penalty deductions.
-- `test_api_endpoints.py`: End-to-end REST endpoints, candidate workflows, recruiter decision persistence.
+- `test_api_endpoints.py`: End-to-end REST endpoints, ATS compatibility auditor, candidate workflows, recruiter decision persistence.
 
 ---
 

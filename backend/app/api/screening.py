@@ -381,3 +381,96 @@ def export_screening_csv(id: int, db: Session = Depends(get_db)):
         media_type="text/csv",
         headers={"Content-Disposition": f"attachment; filename=screening_leaderboard_session_{id}.csv"}
     )
+
+class ATSCheckRequest(BaseModel):
+    resume_text: str
+    job_text: str
+    target_role: Optional[str] = ""
+
+@router.post("/ats-check", response_model=ApiResponse[dict])
+async def check_ats_compatibility(request: ATSCheckRequest):
+    """
+    Evaluate a Resume against a Job Description for ATS compatibility,
+    section parseability, keyword match rate, and actionable optimization advice.
+    """
+    llm_service = get_llm_service()
+    
+    # 1. Parse Resume
+    parsed_resume = await llm_service.analyze_resume(request.resume_text)
+    
+    # 2. Parse Job Description
+    parsed_jd = await llm_service.analyze_job_description(request.job_text, title=request.target_role)
+    
+    # 3. Match candidate
+    match_result = await llm_service.match_candidate(parsed_resume, parsed_jd)
+    
+    # 4. Compute ATS Specific Metrics
+    has_contact = bool(parsed_resume.candidate.email or parsed_resume.candidate.phone)
+    has_experience = len(parsed_resume.experience) > 0 or parsed_resume.total_experience_years > 0
+    has_education = len(parsed_resume.education) > 0
+    has_skills = bool(parsed_resume.skills and (
+        parsed_resume.skills.programming_languages or 
+        parsed_resume.skills.frameworks or 
+        parsed_resume.skills.databases or 
+        parsed_resume.skills.tools
+    ))
+    has_projects = len(parsed_resume.projects) > 0
+    
+    # Formatting score
+    format_pts = (
+        (25 if has_contact else 0) +
+        (25 if has_experience else 0) +
+        (25 if has_education else 0) +
+        (25 if has_skills else 0)
+    )
+    
+    matched = match_result.get("matched_skills", [])
+    missing = match_result.get("missing_skills", [])
+    total_req = max(1, len(matched) + len(missing))
+    keyword_match_rate = round((len(matched) / total_req) * 100.0, 1)
+    
+    # Composite ATS Score (Weighted: 60% Keyword Alignment, 25% Experience, 15% Format Structure)
+    base_tech = match_result.get("category_scores", {}).get("technical_skills", 70.0)
+    base_exp = match_result.get("category_scores", {}).get("experience", 75.0)
+    ats_score = round((base_tech * 0.60) + (base_exp * 0.25) + (format_pts * 0.15), 1)
+    ats_score = max(0.0, min(100.0, ats_score))
+    
+    grade = (
+        "A+" if ats_score >= 90 else
+        "A" if ats_score >= 80 else
+        "B" if ats_score >= 70 else
+        "C" if ats_score >= 55 else "D"
+    )
+    
+    actionable_tips = []
+    if missing:
+        actionable_tips.append(f"Add critical missing keywords: {', '.join(missing[:4])} directly in your skills & experience bullet points.")
+    if not has_contact:
+        actionable_tips.append("Include professional contact information (email, phone, LinkedIn) at the top of your resume.")
+    if not has_projects:
+        actionable_tips.append("Add a 'Projects' section highlighting production deployments or quantifiable technical achievements.")
+    actionable_tips.append("Use standard section headings (Work Experience, Education, Technical Skills) to ensure seamless ATS bot parsing.")
+
+    return ApiResponse(
+        success=True,
+        data={
+            "ats_score": ats_score,
+            "grade": grade,
+            "keyword_match_rate": keyword_match_rate,
+            "formatting_score": format_pts,
+            "target_role": parsed_jd.job_title,
+            "matched_keywords": matched,
+            "missing_keywords": missing,
+            "sections_audit": {
+                "contact_info": {"status": "PASS" if has_contact else "WARN", "label": "Contact Information & Links"},
+                "work_experience": {"status": "PASS" if has_experience else "FAIL", "label": "Work Experience & History"},
+                "education": {"status": "PASS" if has_education else "WARN", "label": "Education & Degree Verification"},
+                "skills_section": {"status": "PASS" if has_skills else "FAIL", "label": "Technical Skills Categorization"},
+                "projects": {"status": "PASS" if has_projects else "WARN", "label": "Practical Projects & Portfolio"}
+            },
+            "gemma_thinking": match_result.get("gemma_thinking", ""),
+            "actionable_tips": actionable_tips
+        },
+        message="ATS Compatibility Audit complete."
+    )
+

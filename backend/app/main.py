@@ -29,10 +29,10 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# Configure CORS
+# Configure Wildcard CORS for seamless cross-origin communication on Render, Vercel, and local
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.BACKEND_CORS_ORIGINS,
+    allow_origin_regex=".*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -48,7 +48,7 @@ async def global_exception_handler(request: Request, exc: Exception):
             "success": False,
             "error": {
                 "code": "INTERNAL_SERVER_ERROR",
-                "message": "An unexpected server error occurred. Please verify input data or try again."
+                "message": f"Server error: {str(exc)}"
             }
         }
     )

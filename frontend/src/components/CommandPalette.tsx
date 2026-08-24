@@ -13,6 +13,7 @@ import {
   Trash2,
   Zap,
   FlaskConical,
+  FileCheck,
   X
 } from 'lucide-react';
 import { NavTab } from './Sidebar';
@@ -61,6 +62,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   const quickNav = [
     { id: 'dashboard' as NavTab, label: 'Dashboard', icon: LayoutDashboard, category: 'Navigation' },
     { id: 'upload' as NavTab, label: 'Screen Candidates (Upload)', icon: UploadCloud, category: 'Navigation' },
+    { id: 'ats' as NavTab, label: 'ATS Score Checker', icon: FileCheck, category: 'Tools' },
     { id: 'job' as NavTab, label: 'Job Descriptions Studio', icon: Briefcase, category: 'Navigation' },
     { id: 'results' as NavTab, label: 'Candidates Leaderboard', icon: Users, category: 'Navigation' },
     { id: 'compare' as NavTab, label: 'Candidate Comparison Matrix', icon: GitCompare, category: 'Navigation' },

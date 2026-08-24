@@ -7,15 +7,13 @@ import {
   GitCompare,
   History,
   FlaskConical,
-  Settings,
-  HelpCircle,
+  FileCheck,
   ShieldCheck,
-  Award,
   GraduationCap
 } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 
-export type NavTab = 'dashboard' | 'upload' | 'job' | 'results' | 'candidates' | 'compare' | 'history' | 'lab';
+export type NavTab = 'dashboard' | 'upload' | 'job' | 'results' | 'candidates' | 'compare' | 'history' | 'lab' | 'ats';
 
 interface SidebarProps {
   activeTab: NavTab;
@@ -42,6 +40,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
       label: 'Screen Candidates',
       icon: UploadCloud,
       badge: candidateCount > 0 ? candidateCount : null
+    },
+    {
+      id: 'ats' as NavTab,
+      label: 'ATS Score Checker',
+      icon: FileCheck,
+      badge: 'NEW'
     },
     {
       id: 'job' as NavTab,
@@ -109,7 +113,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 {item.badge !== null && (
                   <span
                     className={`font-mono text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                      item.badge === 'PRO'
+                      item.badge === 'PRO' || item.badge === 'NEW'
                         ? 'bg-[#00f2c3]/15 text-[#00f2c3] border border-[#00f2c3]/30'
                         : isActive
                         ? 'bg-[#00f2c3]/15 text-[#00f2c3] border border-[#00f2c3]/30'

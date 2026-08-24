@@ -8,6 +8,7 @@ import { ScreeningResultsPage } from './pages/ScreeningResultsPage';
 import { CandidateDetailPage } from './pages/CandidateDetailPage';
 import { CompareCandidatesPage } from './pages/CompareCandidatesPage';
 import { MatchLabPage } from './pages/MatchLabPage';
+import { ATSCheckerPage } from './pages/ATSCheckerPage';
 import { ScreeningHistoryPage } from './pages/ScreeningHistoryPage';
 import { CommandPalette } from './components/CommandPalette';
 import { api } from './services/api';
@@ -25,7 +26,7 @@ export function App() {
   const [isActionLoading, setIsActionLoading] = useState(false);
   const [isScreeningLoading, setIsScreeningLoading] = useState(false);
 
-  // New Pro Features State
+  // Pro Features State
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isBlindMode, setIsBlindMode] = useState(false);
 
@@ -170,7 +171,7 @@ export function App() {
         }}
       />
 
-      {/* Main Layout Container with Refined Sidebar */}
+      {/* Main Layout Container */}
       <div className="flex-1 flex max-w-7xl w-full mx-auto my-6 px-4 sm:px-6 lg:px-8 gap-6">
         {/* Sidebar Navigation */}
         <Sidebar
@@ -213,6 +214,10 @@ export function App() {
                   onProceedToScreening={handleStartScreening}
                   onRefreshStats={loadRealtimeData}
                 />
+              )}
+
+              {activeTab === 'ats' && (
+                <ATSCheckerPage />
               )}
 
               {activeTab === 'job' && (

@@ -21,6 +21,10 @@ const PAGE_META: Record<NavTab, { title: string; subtitle: string }> = {
     title: 'Screen Candidates',
     subtitle: 'Bulk resume upload & automated multi-stage parsing pipeline'
   },
+  ats: {
+    title: 'ATS Resume Compatibility Checker',
+    subtitle: 'Audit resume parseability, keyword match rate & bot pass scores'
+  },
   job: {
     title: 'Job Descriptions',
     subtitle: 'Define role requirements, mandatory criteria & compensation'
