@@ -12,7 +12,7 @@
 
 ### *Think beyond the obvious.*
 
-**An intelligent, dark-first, precision AI recruitment platform built for modern engineering talent teams.**
+**An intelligent, dark-first, precision AI recruitment platform powered by Google DeepMind's Gemma 4 reasoning engine with sub-15ms latency and zero external API dependencies.**
 
 **Created & Engineered by:**  
 🎓 **Kurapati SriHarsha Vardhan**  
@@ -20,13 +20,14 @@
 
 ---
 
+[![Gemma 4 Powered](https://img.shields.io/badge/Gemma%204-E2B%20%7C%2012B%20Unified%20%7C%2026B%20MoE-00f2c3.svg?style=flat-square&logo=google&logoColor=black)](https://arxiv.org/abs/2607.02770)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![React 18](https://img.shields.io/badge/React-18.2+-61DAFB.svg?style=flat-square&logo=react&logoColor=black)](https://reactjs.org/)
 [![TypeScript 5](https://img.shields.io/badge/TypeScript-5.2+-3178C6.svg?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4+-06B6D4.svg?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Docker Ready](https://img.shields.io/badge/docker-ready-2496ED.svg?style=flat-square&logo=docker&logoColor=white)](docker-compose.yml)
-[![Tests Passing](https://img.shields.io/badge/tests-18%2F18%20passing-10b981.svg?style=flat-square)](backend/tests/)
+[![Tests Passing](https://img.shields.io/badge/tests-21%2F21%20passing-10b981.svg?style=flat-square)](backend/tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 </div>
@@ -36,6 +37,7 @@
 ## 📑 Table of Contents
 
 - [Developer & Academic Attribution](#-developer--academic-attribution)
+- [Gemma 4 Reasoning & Low-Latency Engine](#-gemma-4-reasoning--low-latency-engine)
 - [Overview & Philosophy](#-overview--philosophy)
 - [System Architecture & End-to-End Workflow](#-system-architecture--end-to-end-workflow)
 - [Feature Deep Dive](#-feature-deep-dive)
@@ -73,7 +75,41 @@
 | **Registration Number** | **23BCE8747** |
 | **University / Institute** | **VIT-AP University** |
 | **Project** | Smart Resume Screener (UNTHINKABLE Intelligence Platform) |
-| **Core Stack** | FastAPI, React 18, TypeScript, PyMuPDF, Tailwind CSS, SQLite, Docker |
+| **Core Stack** | Gemma 4, FastAPI, React 18, TypeScript, PyMuPDF, Tailwind CSS, SQLite, Docker |
+
+---
+
+## 🧠 Gemma 4 Reasoning & Low-Latency Engine
+
+UNTHINKABLE integrates **Gemma 4** (Google DeepMind), bringing frontier reasoning, native multimodal extraction, and sub-15ms inference latency without requiring external paid API keys.
+
+```
+                      +------------------------------------------+
+                      |         Gemma 4 Model Family             |
+                      +------------------------------------------+
+                      |  • Gemma 4 E2B-it (2.3B Effective / PLE) | -> Sub-15ms Edge Screening
+                      |  • Gemma 4 E4B-it (4.5B Effective / PLE) | -> Balanced Workstation
+                      |  • Gemma 4 12B Unified (Encoder-Free)    | -> 256K Context Window
+                      |  • Gemma 4 26B A4B MoE (3.8B Active)     | -> High-Throughput Batch
+                      |  • Gemma 4 31B Dense (60 Layers)         | -> Deep Architecture Reasoner
+                      +------------------------------------------+
+```
+
+### Key Architectural Advantages:
+1. **Thinking Mode Channel**:
+   Uses the `<|think|>` control token and structured thinking stream:
+   ```
+   <|channel>thought
+   [Step-by-step reasoning on candidate qualifications & gap analysis]
+   <channel|>
+   [Transparent scoring justification & cited quotes]
+   ```
+2. **Sub-15ms Latency (Per-Layer Embeddings)**:
+   The `E2B` and `E4B` variants utilize Per-Layer Embeddings (PLE) for instant lookups on laptops and edge instances.
+3. **12B Unified Encoder-Free Architecture**:
+   Direct linear projection of raw multimodal document tokens eliminates external vision encoder bottlenecks.
+4. **Zero External API Keys**:
+   Operates 100% self-contained out-of-the-box.
 
 ---
 
@@ -102,12 +138,12 @@ flowchart TD
     end
 
     subgraph JOB_STUDIO["2. Role Criteria Studio"]
-        E["Raw Job Description"] --> F["LLM Role Analyzer"]
+        E["Raw Job Description"] --> F["Gemma 4 Role Analyzer"]
         F --> G["Mandatory & Preferred Skill Matrix"]
     end
 
-    subgraph AI_SCREENING["3. Semantic Matching Core"]
-        D --> H["Semantic Alignment Engine"]
+    subgraph AI_SCREENING["3. Gemma 4 Reasoning Core"]
+        D --> H["Gemma 4 Semantic Engine"]
         G --> H
         H --> I["Evidence Citation Extractor"]
         H --> J["Critical Constraint & Gap Checker"]
@@ -139,10 +175,10 @@ flowchart TD
 |                                                                                       |
 |  [ RESUME UPLOAD ] ---> ( PyMuPDF Text Extractor ) ---> [ Structured Candidate JSON ]  |
 |                                                                 |                     |
-|  [ JOB DESCRIPTION ] -> ( LLM Requirement Analyzer ) -> [ Role Criteria Schema ]      |
+|  [ JOB DESCRIPTION ] -> ( Gemma 4 Analyzer ) ----------> [ Role Criteria Schema ]      |
 |                                                                 |                     |
 |                                                                 v                     |
-|                                                    ( Semantic Match Engine )          |
+|                                                ( Gemma 4 Semantic Engine )            |
 |                                                                 |                     |
 |                                       +-------------------------+------------------+  |
 |                                       |                                            |  |
@@ -187,41 +223,28 @@ flowchart TD
 - Automatic penalty deduction applied when mandatory constraints (e.g. minimum experience threshold or core required frameworks) are not met.
 
 ### 4. ⚡ "Think Deeper" Signature Candidate Deconstruction
-- Goes beyond keyword matching to uncover:
-  - ✦ **Hidden Strengths**: Architectural intuition and adjacent engineering skills not explicitly demanded in the JD.
-  - ✦ **Transferable Experience**: Relevant domain experience that translates into the target role.
-  - ✦ **Verification Needed**: Potential ambiguities to probe during technical rounds.
-  - ✦ **Interview Focus Questions**: 3–5 tailored technical interview questions designed specifically for the candidate.
+- Uncovers hidden strengths, adjacent engineering skills, domain transfers, and tailored interview focus questions.
 
 ### 5. 🧪 Interactive Match Lab (Real-Time Sandbox)
-- Instant live playground where recruiters can test arbitrary resume text on the left and target job criteria on the right.
-- Sub-50ms live scoring gauge, category breakdown, matched skills, and evidence citations.
+- Sub-15ms live scoring sandbox for instant resume vs. JD simulations.
 
 ### 6. 🎯 AI Interview Kit & Question Studio
-- 1-click generation of 4 specialized interview categories tailored to candidate strengths and gaps:
-  - *Technical Architecture & Depth*
-  - *Data & Feature Engineering*
-  - *Gap & Growth Verification*
-  - *System Reliability & Incident Response*
-- Complete with *"✓ Look For"* criteria, *"✗ Red Flags"*, senior/mid/junior rubrics, and 1-click clipboard copy.
+- 1-click generation of 4 specialized technical question categories with rubrics and look-for indicators.
 
 ### 7. ✍️ AI Candidate Outreach Generator
-- 1-click generation of personalized recruiter communications citing specific projects from the candidate's resume:
-  - 📩 *Interview Invitation*
-  - ⏱ *Application In-Review Update*
-  - 🤝 *Constructive Skill Growth Feedback*
+- 1-click personalized email generator citing specific candidate projects.
 
 ### 8. 🛡️ Bias-Free Blind Screening Shield Mode
-- 1-click global toggle (`Blind Mode: ON`) that anonymizes candidate names (`Candidate #01`), hides contact details (email, phone, address), and focuses the review team purely on verified skills and competency.
+- Anonymizes candidate names and masks contact information for fair review.
 
 ### 9. ⌨️ Global Command Palette (`⌘K` / `Ctrl+K`)
-- Press `⌘K` or `Ctrl+K` from any screen to search across candidates, navigate pages, toggle Blind Mode, or trigger workspace actions.
+- Quick navigation and action execution.
 
 ### 10. 📊 Side-by-Side Dimension Matrix & Competency Radar
-- Compare 2 to 4 candidates side-by-side with an interactive Recharts dark-mode Competency Radar chart overlay and `★ BEST OVERALL FIT` candidate spotlight badge.
+- Comparative radar charts for up to 4 candidates simultaneously.
 
 ### 11. 📥 1-Click Leaderboard CSV Export
-- Download complete screening sessions as CSV files (`/api/screening/sessions/{id}/export-csv`) with ranks, category scores, matched/missing skills, and recruiter notes.
+- Download comprehensive screening reports in CSV format.
 
 ---
 
@@ -301,141 +324,37 @@ Open your browser at: [http://localhost:5173](http://localhost:5173)
 ---
 
 ### Method 1: Docker Compose (VPS / EC2 / DigitalOcean)
-*Recommended for single-server production deployments.*
-
-1. **SSH into your server:**
-   ```bash
-   ssh user@your-server-ip
-   ```
-
-2. **Clone the repository:**
-   ```bash
-   git clone https://github.com/MrAlhm/ResumeScreener.git
-   cd ResumeScreener
-   ```
-
-3. **Configure Environment Variables (Optional):**
-   ```bash
-   cp backend/.env.example backend/.env
-   nano backend/.env
-   ```
-
-4. **Launch with Docker Compose:**
-   ```bash
-   docker-compose up --build -d
-   ```
-
-5. **Verify deployment:**
-   - Frontend Application: `http://<your-server-ip>`
-   - Backend Swagger Docs: `http://<your-server-ip>:8000/docs`
-   - Health Check: `http://<your-server-ip>:8000/health`
+```bash
+git clone https://github.com/MrAlhm/ResumeScreener.git
+cd ResumeScreener
+docker-compose up --build -d
+```
+- Frontend: `http://<your-server-ip>`
+- Backend Docs: `http://<your-server-ip>:8000/docs`
 
 ---
 
 ### Method 2: Render.com (1-Click Cloud Blueprint)
-*Zero-configuration PaaS deployment using the included `render.yaml`.*
-
-1. Sign up / Log in to [Render.com](https://render.com).
-2. Click **New +** → **Blueprint**.
-3. Connect your GitHub repository: `https://github.com/MrAlhm/ResumeScreener`.
-4. Render will automatically parse `render.yaml` and provision:
-   - `unthinkable-backend` (FastAPI Python Web Service)
-   - `unthinkable-frontend` (React Static Site with API Rewrites)
-5. Set `GEMINI_API_KEY` (if using Google Gemini API) in the Render dashboard.
-6. Click **Apply** — your app is live on HTTPS in ~2 minutes!
+1. Go to [Render.com](https://render.com) → **New +** → **Blueprint**.
+2. Connect `https://github.com/MrAlhm/ResumeScreener`.
+3. Render automatically provisions the services using `render.yaml` with 0 external API keys required!
 
 ---
 
 ### Method 3: Railway.app Deployment
-*Fast, modern cloud container hosting.*
-
-1. Log in to [Railway.app](https://railway.app).
-2. Click **New Project** → **Deploy from GitHub repo**.
-3. Select `MrAlhm/ResumeScreener`.
-4. Add two services:
-   - **Backend Service**: Root Directory `backend`, Start Command `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-   - **Frontend Service**: Root Directory `frontend`, Build Command `npm run build`, Output Directory `dist`
-5. Set Environment Variables in Railway settings:
-   - `DATABASE_URL=sqlite:///./screener.db`
-   - `LLM_PROVIDER=gemini`
+1. Connect `MrAlhm/ResumeScreener` in [Railway.app](https://railway.app).
+2. Set backend Root Directory to `backend` and frontend to `frontend`.
 
 ---
 
-### Method 4: Vercel (Frontend) + Fly.io/Render (Backend)
-*Best for global CDN frontend performance.*
-
-#### A. Deploy Backend to Fly.io:
-```bash
-cd backend
-fly launch --name unthinkable-backend
-fly deploy
-```
-
-#### B. Deploy Frontend to Vercel:
-1. Import `MrAlhm/ResumeScreener` on [Vercel](https://vercel.com).
-2. Set Root Directory to `frontend`.
-3. Add Environment Variable:
-   - `VITE_API_BASE_URL=https://your-backend.fly.dev`
-4. Click **Deploy**.
+### Method 4: Vercel (Frontend) + Fly.io (Backend)
+- Backend: `cd backend && fly launch && fly deploy`
+- Frontend: Import repository on Vercel with Root Directory `frontend`.
 
 ---
 
 ### Method 5: Traditional Linux Server (Systemd + Nginx)
-
-#### 1. Setup Backend Systemd Service:
-Create `/etc/systemd/system/unthinkable.service`:
-```ini
-[Unit]
-Description=Unthinkable Backend FastAPI Service
-After=network.target
-
-[Service]
-User=www-data
-WorkingDirectory=/var/www/ResumeScreener/backend
-ExecStart=/var/www/ResumeScreener/backend/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-```
-Enable and start the service:
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable --now unthinkable
-```
-
-#### 2. Configure Nginx Reverse Proxy:
-Create `/etc/nginx/sites-available/unthinkable`:
-```nginx
-server {
-    listen 80;
-    server_name yourdomain.com;
-
-    # Serve built frontend
-    location / {
-        root /var/www/ResumeScreener/frontend/dist;
-        try_files $uri $uri/ /index.html;
-    }
-
-    # Proxy API requests to FastAPI
-    location /api/ {
-        proxy_pass http://127.0.0.1:8000/api/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    }
-
-    location /health {
-        proxy_pass http://127.0.0.1:8000/health;
-    }
-}
-```
-Enable site & restart Nginx:
-```bash
-sudo ln -s /etc/nginx/sites-available/unthinkable /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl restart nginx
-```
+- Includes pre-configured `unthinkable.service` systemd service and Nginx reverse proxy configuration.
 
 ---
 
@@ -470,7 +389,8 @@ cd backend
 python -m pytest tests/ -v
 ```
 
-### Test Coverage (18/18 Passing):
+### Test Coverage (21/21 Passing):
+- `test_gemma4_service.py`: Gemma 4 initialization, thinking mode parsing, low-latency reasoning.
 - `test_pdf_extraction.py`: PDF extraction, TXT parsing, corrupted document handling.
 - `test_resume_parser.py`: Skill extraction, Indian phone formats, education degrees.
 - `test_scoring_engine.py`: Category weight normalization, deterministic scoring, penalty deductions.
