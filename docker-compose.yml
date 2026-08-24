@@ -10,9 +10,8 @@ services:
       - "8000:8000"
     environment:
       - DATABASE_URL=sqlite:///./screener.db
-      - LLM_PROVIDER=gemini
-      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
-      - BACKEND_CORS_ORIGINS=["http://localhost:5173","http://localhost:80","http://localhost","http://127.0.0.1"]
+      - LLM_PROVIDER=built_in
+      - BACKEND_CORS_ORIGINS=["http://localhost:5173","http://localhost:80","http://localhost","http://127.0.0.1","*"]
     volumes:
       - backend-data:/app
     restart: unless-stopped

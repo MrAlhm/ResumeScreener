@@ -3,25 +3,25 @@ from typing import List
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "Smart Resume Screener"
+    PROJECT_NAME: str = "UNTHINKABLE Smart Resume Screener"
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api"
     
     # Database
     DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./screener.db")
     
-    # LLM Settings
-    LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "gemini")
-    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", os.getenv("LLM_API_KEY", ""))
+    # Self-Contained Built-in Semantic Engine (Zero External Key Requirement)
+    LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "built_in")
+    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
     GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
-    DEMO_MODE: bool = os.getenv("DEMO_MODE", "true").lower() in ("true", "1", "yes")
+    DEMO_MODE: bool = True
     
     # File upload limits
     MAX_FILE_SIZE_MB: int = int(os.getenv("MAX_FILE_SIZE_MB", "10"))
     ALLOWED_EXTENSIONS: List[str] = [".pdf", ".txt"]
     UPLOAD_DIR: str = os.getenv("UPLOAD_DIR", "./uploads")
     
-    # Prompt Versions
+    # Prompt & Schema Versions
     PROMPT_VERSION_RESUME: str = "resume_parser_v1.0"
     PROMPT_VERSION_JD: str = "job_parser_v1.0"
     PROMPT_VERSION_MATCH: str = "candidate_matcher_v1.0"
