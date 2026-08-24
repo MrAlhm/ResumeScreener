@@ -7,22 +7,42 @@ import {
   MatchResult
 } from '../types';
 
-const API_BASE = '/api';
+// Determine API base URL dynamically (supports VITE_API_BASE_URL for cloud deployments or relative /api)
+const envBase = (import.meta as any).env?.VITE_API_BASE_URL || '';
+const API_BASE = envBase ? `${envBase.replace(/\/$/, '')}/api` : '/api';
 
 async function fetchJson<T>(url: string, options?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE}${url}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...(options?.headers || {})
-    },
-    ...options
-  });
+  try {
+    const response = await fetch(`${API_BASE}${url}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...(options?.headers || {})
+      },
+      ...options
+    });
 
-  const json: ApiResponse<T> = await response.json();
-  if (!json.success && json.error) {
-    throw new Error(json.error.message || 'API request failed');
+    if (!response.ok) {
+      const errorText = await response.text();
+      let parsedMessage = `HTTP error ${response.status}`;
+      try {
+        const errJson = JSON.parse(errorText);
+        if (errJson?.error?.message) parsedMessage = errJson.error.message;
+        else if (errJson?.message) parsedMessage = errJson.message;
+      } catch {
+        // Response was not JSON (e.g. HTML 404/502)
+      }
+      throw new Error(parsedMessage);
+    }
+
+    const json: ApiResponse<T> = await response.json();
+    if (!json.success && json.error) {
+      throw new Error(json.error.message || 'API request failed');
+    }
+    return json.data as T;
+  } catch (err: any) {
+    console.warn(`API call failed on [${url}]:`, err?.message);
+    throw err;
   }
-  return json.data;
 }
 
 export const api = {
@@ -59,11 +79,15 @@ export const api = {
       body: formData
     });
 
+    if (!response.ok) {
+      throw new Error(`Upload failed with status ${response.status}`);
+    }
+
     const json: ApiResponse<any[]> = await response.json();
     if (!json.success && json.error) {
       throw new Error(json.error.message || 'Failed to upload files');
     }
-    return json.data;
+    return json.data as any[];
   },
 
   // Candidates

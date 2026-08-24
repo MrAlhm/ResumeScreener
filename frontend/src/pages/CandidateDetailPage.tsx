@@ -102,11 +102,23 @@ export const CandidateDetailPage: React.FC<CandidateDetailPageProps> = ({
     }
   };
 
-  if (loading || !candidate) {
+  if (loading) {
     return (
       <div className="py-24 text-center text-[#94a3b8]">
         <div className="h-8 w-8 border-2 border-[#00f2c3] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
         <p className="text-xs font-mono">Generating Candidate Intelligence Report...</p>
+      </div>
+    );
+  }
+
+  if (!candidate) {
+    return (
+      <div className="bg-[#121520] border border-[#1e2433] rounded-2xl p-12 text-center text-[#94a3b8] space-y-4 max-w-md mx-auto my-12">
+        <p className="text-sm font-bold text-[#f8fafc]">Candidate Profile Not Found</p>
+        <p className="text-xs text-[#94a3b8]">The requested candidate profile is not available in the current workspace.</p>
+        <button onClick={onBack} className="px-4 py-2 bg-[#181d2a] hover:bg-[#242b3d] border border-[#00f2c3]/30 rounded-xl text-xs font-bold text-[#00f2c3] transition-colors">
+          Return to Leaderboard
+        </button>
       </div>
     );
   }

@@ -56,6 +56,22 @@ export const CompareCandidatesPage: React.FC<CompareCandidatesPageProps> = ({
     setSelectedIds(selectedIds.filter((cid) => cid !== id));
   };
 
+  if (selectedCandidates.length === 0) {
+    return (
+      <div className="bg-[#121520] rounded-2xl border border-[#1e2433] p-12 text-center space-y-4 max-w-lg mx-auto my-12 shadow-xl">
+        <GitCompare className="h-10 w-10 text-[#64748b] mx-auto" />
+        <h3 className="text-base font-bold text-[#f8fafc]">No candidates selected for comparison</h3>
+        <p className="text-xs text-[#94a3b8]">Select 2 to 4 candidates from the screening leaderboard to evaluate them side-by-side.</p>
+        <button
+          onClick={onBack}
+          className="px-4 py-2 bg-[#00f2c3] text-[#08090d] font-bold text-xs rounded-xl shadow-sm"
+        >
+          Return to Leaderboard
+        </button>
+      </div>
+    );
+  }
+
   const radarData = [
     {
       subject: 'Tech Skills',
@@ -95,27 +111,10 @@ export const CompareCandidatesPage: React.FC<CompareCandidatesPageProps> = ({
   ];
 
   const colors = ['#00f2c3', '#38bdf8', '#f59e0b', '#a855f7'];
-
   const bestFitCandidate = [...selectedCandidates].sort((a, b) => b.overall_score - a.overall_score)[0];
   const maxOverall = Math.max(...selectedCandidates.map((c) => c.overall_score), 0);
   const maxTech = Math.max(...selectedCandidates.map((c) => c.category_scores?.technical_skills || 0), 0);
   const maxExp = Math.max(...selectedCandidates.map((c) => c.category_scores?.experience || 0), 0);
-
-  if (selectedCandidates.length === 0) {
-    return (
-      <div className="bg-[#121520] rounded-2xl border border-[#1e2433] p-12 text-center space-y-4 max-w-lg mx-auto my-12 shadow-xl">
-        <GitCompare className="h-10 w-10 text-[#64748b] mx-auto" />
-        <h3 className="text-base font-bold text-[#f8fafc]">No candidates selected for comparison</h3>
-        <p className="text-xs text-[#94a3b8]">Select 2 to 4 candidates from the screening leaderboard to evaluate them side-by-side.</p>
-        <button
-          onClick={onBack}
-          className="px-4 py-2 bg-[#00f2c3] text-[#08090d] font-bold text-xs rounded-xl shadow-sm"
-        >
-          Return to Leaderboard
-        </button>
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300 max-w-7xl mx-auto">
