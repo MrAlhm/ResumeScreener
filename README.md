@@ -12,7 +12,7 @@
 
 ### *Think beyond the obvious.*
 
-**An intelligent, dark-first, precision AI recruitment platform powered by Google DeepMind's Gemma 4 reasoning engine with sub-15ms latency and zero external API dependencies.**
+**An intelligent, dark-first, precision AI recruitment platform powered by Google DeepMind's Gemma 4 reasoning engine with sub-15ms latency, ACID-compliant database consistency, and zero external API dependencies.**
 
 **Created & Engineered by:**  
 🎓 **Kurapati SriHarsha Vardhan**  
@@ -21,13 +21,14 @@
 ---
 
 [![Gemma 4 Powered](https://img.shields.io/badge/Gemma%204-E2B%20%7C%2012B%20Unified%20%7C%2026B%20MoE-00f2c3.svg?style=flat-square&logo=google&logoColor=black)](https://arxiv.org/abs/2607.02770)
+[![Database: ACID & WAL](https://img.shields.io/badge/database-ACID%20%7C%20WAL%20Mode-blue.svg?style=flat-square&logo=sqlite&logoColor=white)](backend/app/database/connection.py)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![React 18](https://img.shields.io/badge/React-18.2+-61DAFB.svg?style=flat-square&logo=react&logoColor=black)](https://reactjs.org/)
 [![TypeScript 5](https://img.shields.io/badge/TypeScript-5.2+-3178C6.svg?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4+-06B6D4.svg?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Docker Ready](https://img.shields.io/badge/docker-ready-2496ED.svg?style=flat-square&logo=docker&logoColor=white)](docker-compose.yml)
-[![Tests Passing](https://img.shields.io/badge/tests-21%2F21%20passing-10b981.svg?style=flat-square)](backend/tests/)
+[![Tests Passing](https://img.shields.io/badge/tests-24%2F24%20passing-10b981.svg?style=flat-square)](backend/tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 </div>
@@ -38,6 +39,7 @@
 
 - [Developer & Academic Attribution](#-developer--academic-attribution)
 - [Gemma 4 Reasoning & Low-Latency Engine](#-gemma-4-reasoning--low-latency-engine)
+- [Database Architecture & ACID Consistency](#-database-architecture--acid-consistency)
 - [Overview & Philosophy](#-overview--philosophy)
 - [System Architecture & End-to-End Workflow](#-system-architecture--end-to-end-workflow)
 - [Feature Deep Dive](#-feature-deep-dive)
@@ -97,19 +99,31 @@ UNTHINKABLE integrates **Gemma 4** (Google DeepMind), bringing frontier reasonin
 
 ### Key Architectural Advantages:
 1. **Thinking Mode Channel**:
-   Uses the `<|think|>` control token and structured thinking stream:
-   ```
-   <|channel>thought
-   [Step-by-step reasoning on candidate qualifications & gap analysis]
-   <channel|>
-   [Transparent scoring justification & cited quotes]
-   ```
+   Uses the `<|think|>` control token and structured thinking stream (`<|channel>thought ... <channel|>`).
 2. **Sub-15ms Latency (Per-Layer Embeddings)**:
    The `E2B` and `E4B` variants utilize Per-Layer Embeddings (PLE) for instant lookups on laptops and edge instances.
 3. **12B Unified Encoder-Free Architecture**:
    Direct linear projection of raw multimodal document tokens eliminates external vision encoder bottlenecks.
 4. **Zero External API Keys**:
    Operates 100% self-contained out-of-the-box.
+
+---
+
+## 🗄️ Database Architecture & ACID Consistency
+
+UNTHINKABLE implements a robust, high-concurrency database layer ensuring full ACID transaction guarantees:
+
+1. **Write-Ahead Logging (WAL Mode)**:
+   - Configured with `PRAGMA journal_mode=WAL` to allow simultaneous non-blocking concurrent reads while background writes occur.
+2. **Foreign Key Integrity & Cascades**:
+   - `PRAGMA foreign_keys=ON` strictly enforced.
+   - Cascading deletions (`ondelete="CASCADE"`) guarantee zero orphaned match records or decisions when deleting candidates or job roles.
+3. **Automatic Transaction Rollbacks**:
+   - FastAPI database sessions automatically execute `db.rollback()` upon unexpected runtime exceptions.
+4. **Connection Pre-Ping & Busy Timeout**:
+   - Engine configured with `pool_pre_ping=True` and `busy_timeout=30000` to prevent stale sockets and connection starvation.
+5. **Composite Index Optimization**:
+   - Composite indexes on `(session_id, candidate_id)` and `(candidate_id, job_id)` for $O(1)$ query retrieval.
 
 ---
 
@@ -389,7 +403,8 @@ cd backend
 python -m pytest tests/ -v
 ```
 
-### Test Coverage (21/21 Passing):
+### Test Coverage (24/24 Passing):
+- `test_database_consistency.py`: SQLite WAL journal mode, foreign key cascades, transaction rollback.
 - `test_gemma4_service.py`: Gemma 4 initialization, thinking mode parsing, low-latency reasoning.
 - `test_pdf_extraction.py`: PDF extraction, TXT parsing, corrupted document handling.
 - `test_resume_parser.py`: Skill extraction, Indian phone formats, education degrees.
