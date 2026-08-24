@@ -17,12 +17,10 @@ services:
       - key: BACKEND_CORS_ORIGINS
         value: '["*"]'
 
-  # Frontend Web Service
+  # Frontend Web Service (Global CDN Static Site)
   - type: web
     name: unthinkable-frontend
     runtime: static
-    region: oregon
-    plan: free
     buildCommand: "cd frontend && npm install && npm run build"
     staticPublishPath: "./frontend/dist"
     routes:
