@@ -10,7 +10,8 @@ import {
   Settings,
   HelpCircle,
   ShieldCheck,
-  Sparkles
+  Award,
+  GraduationCap
 } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 
@@ -76,13 +77,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <aside className="w-64 flex-shrink-0 flex flex-col justify-between rounded-2xl bg-[#0d0f17] border border-[#1e2433] p-4 text-[#94a3b8] shadow-2xl">
-      {/* Brand Header */}
       <div className="space-y-6">
         <div className="px-2 py-1">
           <BrandLogo size="md" showText={true} />
         </div>
 
-        {/* Navigation Items */}
         <nav className="space-y-1">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -126,34 +125,23 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </nav>
       </div>
 
-      {/* Footer Area: Settings & Responsible AI */}
-      <div className="space-y-3 pt-6 border-t border-[#1e2433]">
-        <div className="space-y-1">
-          <button
-            onClick={() => {}}
-            className="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-[#64748b] hover:text-[#f8fafc] hover:bg-[#131622] transition-colors"
-          >
-            <Settings className="h-4 w-4 text-[#64748b]" />
-            <span>Settings</span>
-          </button>
-          <button
-            onClick={() => {}}
-            className="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-[#64748b] hover:text-[#f8fafc] hover:bg-[#131622] transition-colors"
-          >
-            <HelpCircle className="h-4 w-4 text-[#64748b]" />
-            <span>Help &amp; API Docs</span>
-          </button>
+      <div className="space-y-3 pt-4 border-t border-[#1e2433]">
+        <div className="p-3 rounded-xl bg-[#121520] border border-[#1e2433] text-[10px] text-[#64748b] leading-relaxed space-y-1.5">
+          <div className="flex items-center gap-1.5 text-[#00f2c3] font-mono font-bold uppercase tracking-wider text-[9px]">
+            <GraduationCap className="h-3.5 w-3.5" />
+            <span>Developer Credit</span>
+          </div>
+          <p className="font-bold text-[#f8fafc] text-[11px] leading-tight">
+            Kurapati SriHarsha Vardhan
+          </p>
+          <p className="font-mono text-[10px] text-[#94a3b8]">
+            23BCE8747 • VIT-AP University
+          </p>
         </div>
 
-        {/* Responsible AI Transparency Note */}
-        <div className="p-3 rounded-xl bg-[#121520] border border-[#1e2433] text-[10px] text-[#64748b] leading-relaxed space-y-1">
-          <div className="flex items-center gap-1.5 text-[#94a3b8] font-semibold">
-            <ShieldCheck className="h-3.5 w-3.5 text-[#00f2c3]" />
-            <span>Explainable AI</span>
-          </div>
-          <p>
-            AI screening assists recruiter review and should not be used as the sole basis for hiring decisions.
-          </p>
+        <div className="p-2.5 rounded-xl bg-[#090a0f] border border-[#161a26] text-[9px] text-[#64748b] leading-relaxed flex items-center gap-1.5">
+          <ShieldCheck className="h-3.5 w-3.5 text-[#00f2c3] flex-shrink-0" />
+          <span>Explainable AI Talent Engine</span>
         </div>
       </div>
     </aside>

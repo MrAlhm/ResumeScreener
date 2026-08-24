@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Bell, Trash2, Zap, ShieldCheck, Sparkles, User, Command } from 'lucide-react';
+import { Search, Trash2, ShieldCheck, GraduationCap } from 'lucide-react';
 import { NavTab } from './Sidebar';
 
 interface NavbarProps {
@@ -62,7 +62,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="bg-[#0d0f17]/95 backdrop-blur-md border-b border-[#1e2433] sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Current Page Context */}
           <div className="space-y-0.5">
             <h1 className="text-sm sm:text-base font-extrabold text-[#f8fafc] tracking-tight flex items-center gap-2">
               <span>{currentMeta.title}</span>
@@ -72,10 +71,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             </p>
           </div>
 
-          {/* Center Search Bar Trigger */}
           <button
             onClick={onOpenCommandPalette}
-            className="hidden md:flex items-center gap-3 px-3.5 py-1.5 rounded-xl bg-[#121520] hover:bg-[#181d2a] border border-[#1e2433] hover:border-[#2c354a] text-xs text-[#64748b] transition-all w-64 justify-between group shadow-sm"
+            className="hidden md:flex items-center gap-3 px-3.5 py-1.5 rounded-xl bg-[#121520] hover:bg-[#181d2a] border border-[#1e2433] hover:border-[#2c354a] text-xs text-[#64748b] transition-all w-60 justify-between group shadow-sm"
           >
             <div className="flex items-center gap-2">
               <Search className="h-3.5 w-3.5 text-[#64748b] group-hover:text-[#00f2c3] transition-colors" />
@@ -86,9 +84,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </kbd>
           </button>
 
-          {/* Right Controls: Status, Blind Mode & User */}
           <div className="flex items-center gap-3">
-            {/* Blind Mode Toggle */}
             <button
               onClick={onToggleBlindMode}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-xl transition-all border ${
@@ -102,18 +98,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="hidden sm:inline">{isBlindMode ? 'Blind Mode: ON' : 'Blind Mode'}</span>
             </button>
 
-            {/* Real-time Status Badge */}
-            <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-[#121520] border border-[#1e2433] text-[#94a3b8]">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00f2c3] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00f2c3]"></span>
-              </span>
-              <span className="font-mono text-[11px] tracking-wider text-[#00f2c3] font-bold">
-                REALTIME
-              </span>
-            </div>
-
-            {/* Clear Workspace */}
             <button
               onClick={onClearData}
               disabled={isActionLoading}
@@ -124,10 +108,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="hidden xl:inline">Reset</span>
             </button>
 
-            {/* Workspace Profile Badge */}
             <div className="flex items-center gap-2 pl-2 border-l border-[#1e2433]">
               <div className="h-8 w-8 rounded-xl bg-[#181d2a] border border-[#242b3d] flex items-center justify-center text-[#00f2c3] font-mono font-bold text-xs">
-                NX
+                HV
+              </div>
+              <div className="hidden lg:block text-left">
+                <p className="text-xs font-bold text-[#f8fafc] leading-tight">SriHarsha Vardhan</p>
+                <p className="text-[10px] text-[#64748b] font-mono">VIT-AP (23BCE8747)</p>
               </div>
             </div>
           </div>

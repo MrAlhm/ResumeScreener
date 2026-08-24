@@ -14,6 +14,12 @@
 
 **An intelligent, dark-first, precision AI recruitment platform built for modern engineering talent teams.**
 
+**Created & Engineered by:**  
+🎓 **Kurapati SriHarsha Vardhan**  
+**Registration No:** `23BCE8747` | **Institution:** **VIT-AP University**
+
+---
+
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![React 18](https://img.shields.io/badge/React-18.2+-61DAFB.svg?style=flat-square&logo=react&logoColor=black)](https://reactjs.org/)
@@ -29,6 +35,7 @@
 
 ## 📑 Table of Contents
 
+- [Developer & Academic Attribution](#-developer--academic-attribution)
 - [Overview & Philosophy](#-overview--philosophy)
 - [System Architecture & End-to-End Workflow](#-system-architecture--end-to-end-workflow)
 - [Feature Deep Dive](#-feature-deep-dive)
@@ -58,6 +65,18 @@
 
 ---
 
+## 🎓 Developer & Academic Attribution
+
+| Attribute | Details |
+| :--- | :--- |
+| **Developer Name** | **Kurapati SriHarsha Vardhan** |
+| **Registration Number** | **23BCE8747** |
+| **University / Institute** | **VIT-AP University** |
+| **Project** | Smart Resume Screener (UNTHINKABLE Intelligence Platform) |
+| **Core Stack** | FastAPI, React 18, TypeScript, PyMuPDF, Tailwind CSS, SQLite, Docker |
+
+---
+
 ## 🔮 Overview & Philosophy
 
 Traditional Applicant Tracking Systems (ATS) rely on brittle keyword string matching—rejecting exceptional engineers because of minor phrasing differences or rewarding keyword-stuffed resumes.
@@ -66,7 +85,7 @@ Traditional Applicant Tracking Systems (ATS) rely on brittle keyword string matc
 - **Intelligent**: Understands semantic equivalents (e.g. recognizing that building low-latency inference in FastAPI directly relates to production backend requirements).
 - **Explainable & Verifiable**: Every match score links directly to verifiable cited quotes from candidate resumes.
 - **Deterministic**: Scores are computed through a transparent mathematical rubric with explicit penalties for missing mandatory constraints.
-- **Developer & Recruiter Centric**: Designed with a sleek, dark-first interface, keyboard shortcuts, and zero AI slop.
+- **Developer & Recruiter Centric**: Designed with a sleek, dark-first interface, keyboard shortcuts, and clean architecture.
 
 ---
 
@@ -298,7 +317,6 @@ Open your browser at: [http://localhost:5173](http://localhost:5173)
 3. **Configure Environment Variables (Optional):**
    ```bash
    cp backend/.env.example backend/.env
-   # Edit with nano if you want to set custom GEMINI_API_KEY
    nano backend/.env
    ```
 
@@ -463,6 +481,16 @@ python -m pytest tests/ -v
 ## ⚖️ Responsible AI Notice
 
 > **Explainable AI**: Unthinkable AI screening provides decision support for recruiters and hiring managers. AI recommendations should not be used as the sole determinant for employment decisions. Final hiring decisions remain under human control.
+
+---
+
+## 👨‍💻 Author
+
+**Kurapati SriHarsha Vardhan**  
+- **Registration Number**: `23BCE8747`  
+- **Institution**: VIT-AP University  
+- **GitHub**: [@MrAlhm](https://github.com/MrAlhm)  
+- **Repository**: [ResumeScreener](https://github.com/MrAlhm/ResumeScreener)
 
 ---
 
